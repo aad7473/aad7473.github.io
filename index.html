@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAJAF</title>
+	<style>
+	*{text-align:center}p{font-size:20px;}
+	</style>
+</head>
+<body>
+<h1>لیست پرواز نجف به تهران</h1>
+<h2 id='h1'>امروز </h2>
+<hr>
+<svg id="mm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; display: block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><g transform="scale(0.8)"><g transform="translate(-50,-50)"><g>  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" values="360 50 50;240 50 50;120 50 50;0 50 50" keyTimes="0;0.333;0.667;1" dur="1s" keySplines="0.7 0 0.3 1;0.7 0 0.3 1;0.7 0 0.3 1" calcMode="spline"></animateTransform>  <path fill="#ee9922" d="M54.3,28.1h34.2c-4.5-9.3-12.4-16.7-21.9-20.8L45.7,28.1L54.3,28.1L54.3,28.1z"></path>  <path fill="#99ee22" d="M61.7,7.3C51.9,4,41.1,4.2,31.5,8.1v29.5l6.1-6.1L61.7,7.3C61.7,7.3,61.7,7.3,61.7,7.3z"></path>  <path fill="#9922ee" d="M28.1,11.6c-9.3,4.5-16.7,12.4-20.8,21.9l20.8,20.8v-8.6L28.1,11.6C28.1,11.6,28.1,11.6,28.1,11.6z"></path>  <path fill="#2299ee" d="M31.5,62.4L7.3,38.3c0,0,0,0,0,0C4,48.1,4.2,58.9,8.1,68.5h29.5L31.5,62.4z"></path>  <path fill="#ee9922" d="M45.7,71.9H11.5c0,0,0,0,0,0c4.5,9.3,12.4,16.7,21.9,20.8l20.8-20.8H45.7z"></path>  <path fill="#99ee22" d="M62.4,68.5L38.3,92.6c0,0,0,0,0,0c9.8,3.4,20.6,3.1,30.2-0.8V62.4L62.4,68.5z"></path>  <path fill="#9922ee" d="M71.9,45.7v8.6v34.2c0,0,0,0,0,0c9.3-4.5,16.7-12.4,20.8-21.9L71.9,45.7z"></path>  <path fill="#2299ee" d="M91.9,31.5C91.9,31.5,91.9,31.5,91.9,31.5l-29.5,0l0,0l6.1,6.1l24.1,24.1c0,0,0,0,0,0 C96,51.9,95.8,41.1,91.9,31.5z"></path></g></g></g></g></svg>
+    <div id="result"></div>
+    <script>
+        function mbs(gy, gm, gd) {
+    var g_d_m, jy, jm, jd, gy2, days;
+    g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+    gy2 = (gm > 2) ? (gy + 1) : gy;
+    days = 355666 + (365 * gy) + ~~((gy2 + 3) / 4) - ~~((gy2 + 99) / 100) + ~~((gy2 + 399) / 400) + gd + g_d_m[gm - 1];
+    jy = -1595 + (33 * ~~(days / 12053));
+    days %= 12053;
+    jy += 4 * ~~(days / 1461);
+    days %= 1461;
+    if (days > 365) {
+        jy += ~~((days - 1) / 365);
+        days = (days - 1) % 365;
+    }
+    if (days < 186) {
+        jm = 1 + ~~(days / 31);
+        jd = 1 + (days % 31);
+    } else {
+        jm = 7 + ~~((days - 186) / 30);
+        jd = 1 + ((days - 186) % 30);
+    }
+    return [jy + '/' + jm + '/' + jd];
+};
+var day=['یکشنبه','دوشنبه','سه شنبه','چهار شنبه','پنج شنبه','جمعه','شنبه']
+var div=document.getElementById('result');var mm=document.getElementById('mm');
+var h1=document.getElementById('h1');h1.innerHTML+=mbs(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()).toString() + '    '+day[new Date().getDay()]
+var list=[];
+var d=new Date();d.setFullYear(2022);d.setMonth(7);
+var z=new XMLHttpRequest();z.open('GET','https://avaju.ml/v?u=https%3A%2F%2Fsafarmarket.com%2Fapi%2Fflight%2Fv3%2Fcalendar%3Forg%3DNJF%26orgCity%3Dfalse%26dst%3DTHR%26dstCity%3Dtrue%26dom%3Dfalse');z.responseType="json";z.onload=function(){var resp=z.response;for([j,i] of Object.entries(resp.cal)){if(i && j.split('-')[1]=='08' && i['minPrice']/10<850000){d.setDate(j.split('-')[2]);list.push(`<p dir="rtl">${day[d.getDay()]} - ${mbs(2022,8,d.getDate()).toString()}  :    ${i['minPrice']/10} تومان <br></p>`);}}mm.style.display="none";div.innerHTML=list.join('');};z.send();
+    </script>
+</body>
+</html>
