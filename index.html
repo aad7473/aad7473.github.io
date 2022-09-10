@@ -43,7 +43,7 @@ var div=document.getElementById('result');var mm=document.getElementById('mm');
 var h1=document.getElementById('h1');h1.innerHTML+=mbs(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()).toString() + '    '+day[new Date().getDay()]
 var list=[];
 var d=new Date();d.setFullYear(2022);d.setMonth(7);
-var z=new XMLHttpRequest();z.open('GET','https://avaju.ml/v?u=https%3A%2F%2Fsafarmarket.com%2Fapi%2Fflight%2Fv3%2Fcalendar%3Forg%3DNJF%26orgCity%3Dfalse%26dst%3DTHR%26dstCity%3Dtrue%26dom%3Dfalse');z.responseType="json";z.onload=function(){var resp=z.response;for([j,i] of Object.entries(resp.cal)){if(i && j.split('-')[1]=='08' && i['minPrice']/10<850000){d.setDate(j.split('-')[2]);list.push(`<p dir="rtl">${day[d.getDay()]} - ${mbs(2022,8,d.getDate()).toString()}  :    ${i['minPrice']/10} تومان <br></p>`);}}mm.style.display="none";div.innerHTML=list.join('');};z.send();
+var z=new XMLHttpRequest();z.open('GET','https://avaju.ml/v?u=https%3A%2F%2Fsafarmarket.com%2Fapi%2Fflight%2Fv3%2Fcalendar%3Forg%3DNJF%26orgCity%3Dfalse%26dst%3DTHR%26dstCity%3Dtrue%26dom%3Dfalse');z.responseType="json";z.onload=function(){var resp=z.response;for([j,i] of Object.entries(resp.cal)){d.setDate(j.split('-')[2]);list.push(`<p dir="rtl">${day[d.getDay()]} - ${mbs(2022,8,d.getDate()).toString()}  :    ${i['minPrice']/10} تومان <br></p>`);}mm.style.display="none";div.innerHTML=list.join('');};z.send();
     </script>
 </body>
 </html>
